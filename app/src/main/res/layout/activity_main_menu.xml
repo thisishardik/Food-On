@@ -77,7 +77,7 @@
             android:background="@drawable/btnblue"
             android:drawableLeft="@drawable/ic_baseline_phone_24"
             android:padding="15dp"
-            android:text="Sign In with Email"
+            android:text="Sign In with Phone"
             android:textColor="#FFFFFF"
             android:textSize="13sp" />
 

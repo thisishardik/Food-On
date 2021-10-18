@@ -1,7 +1,9 @@
 package com.example.foodon;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,75 +13,91 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ChefSignUpActivity extends AppCompatActivity {
 
-    String[] Maharashtra = {"Mumbai","Pune","Nashik"};
-    String[] Madhyapradesh = {"Bhopal","Indore","Ujjain"};
+    String[] Maharashtra = {"Mumbai", "Pune", "Nashik"};
+    String[] Madhyapradesh = {"Bhopal", "Indore", "Ujjain"};
 
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-    TextInputLayout firstNameChef,lastNameChef,emailChef,passwordChef,confirmPassChef,phoneChef,houseNoChef,areaChef,pinCodeChef;
+    TextInputLayout firstNameChef, lastNameChef, emailChef, passwordChef, confirmPassChef, phoneChef, houseNoChef, areaChef, pinCodeChef;
     Spinner stateSpinnerChef, citySpinnerChef;
     Button signUpButtonChef, signInEmailChef, signInPhoneChef;
     CountryCodePicker cpp;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
-    String fname, lname, emailId, password, confPassword, mobile, house, area, pinCode, state, city;
+    String fName, lName, emailId, password, confPassword, mobile, house, area, pinCode, state, city;
 
-    String role="Chef";
+    String role = "Chef";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chef_sign_up);
 
-        firstNameChef = (TextInputLayout)findViewById(R.id.firstNameChef);
-        lastNameChef = (TextInputLayout)findViewById(R.id.lastNameChef);
-        emailChef = (TextInputLayout)findViewById(R.id.emailChef);
-        passwordChef = (TextInputLayout)findViewById(R.id.passwordChef);
-        confirmPassChef = (TextInputLayout)findViewById(R.id.confirmPassChef);
-        phoneChef = (TextInputLayout)findViewById(R.id.phoneChef);
-        houseNoChef = (TextInputLayout)findViewById(R.id.houseNoChef);
-        areaChef = (TextInputLayout)findViewById(R.id.areaChef);
+        firstNameChef = (TextInputLayout) findViewById(R.id.firstNameChef);
+        lastNameChef = (TextInputLayout) findViewById(R.id.lastNameChef);
+        emailChef = (TextInputLayout) findViewById(R.id.emailChef);
+        passwordChef = (TextInputLayout) findViewById(R.id.passwordChef);
+        confirmPassChef = (TextInputLayout) findViewById(R.id.confirmPassChef);
+        phoneChef = (TextInputLayout) findViewById(R.id.phoneChef);
+        houseNoChef = (TextInputLayout) findViewById(R.id.houseNoChef);
+        areaChef = (TextInputLayout) findViewById(R.id.areaChef);
         stateSpinnerChef = (Spinner) findViewById(R.id.stateSpinnerChef);
         citySpinnerChef = (Spinner) findViewById(R.id.citySpinnerChef);
-        pinCodeChef = (TextInputLayout)findViewById(R.id.pinCodeChef);
+        pinCodeChef = (TextInputLayout) findViewById(R.id.pinCodeChef);
 
-        signUpButtonChef = (Button)findViewById(R.id.signUpButtonChef);
-        signInEmailChef = (Button)findViewById(R.id.signInButtonEmailChef);
-        signInPhoneChef = (Button)findViewById(R.id.signInButtonPhoneChef);
+        signUpButtonChef = (Button) findViewById(R.id.signUpButtonChef);
+        signInEmailChef = (Button) findViewById(R.id.signInButtonEmailChef);
+        signInPhoneChef = (Button) findViewById(R.id.signInButtonPhoneChef);
 
-        cpp = (CountryCodePicker)findViewById(R.id.countryCodeHolderChef);
+        cpp = (CountryCodePicker) findViewById(R.id.countryCodeHolderChef);
 
         stateSpinnerChef.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object value = parent.getItemAtPosition(position);
                 state = value.toString().trim();
-                if(state.equals("Maharashtra")){
+                if (state.equals("Maharashtra")) {
                     ArrayList<String> list = new ArrayList<String>();
-                    for(String city: Maharashtra){
+                    for (String city : Maharashtra) {
                         list.add(city);
                     }
-                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>( ChefSignUpActivity.this, android.R.layout.simple_spinner_item, list);
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChefSignUpActivity.this, android.R.layout.simple_spinner_item, list);
                     citySpinnerChef.setAdapter(arrayAdapter);
-                } else if(state.equals("Maharashtra")){
+                } else if (state.equals("Maharashtra")) {
                     ArrayList<String> list = new ArrayList<String>();
-                    for(String city: Maharashtra){
+                    for (String city : Maharashtra) {
                         list.add(city);
                     }
-                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>( ChefSignUpActivity.this, android.R.layout.simple_spinner_item, list);
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ChefSignUpActivity.this, android.R.layout.simple_spinner_item, list);
                     citySpinnerChef.setAdapter(arrayAdapter);
                 }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(ChefSignUpActivity.this, "Nothing selected.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        citySpinnerChef.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Object value = parent.getItemAtPosition(position);
+                city = value.toString().trim();
             }
 
             @Override
@@ -88,14 +106,15 @@ public class ChefSignUpActivity extends AppCompatActivity {
             }
         });
 
-        databaseReference = firebaseDatabase.getReference("Chef");
+        databaseReference = firebaseDatabase.getInstance().getReference("Chef");
         firebaseAuth = FirebaseAuth.getInstance();
+        final ProgressDialog progressDialog = new ProgressDialog(ChefSignUpActivity.this);
 
         signUpButtonChef.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fname = firstNameChef.getEditText().getText().toString().trim();
-                lname = lastNameChef.getEditText().getText().toString().trim();
+                fName = firstNameChef.getEditText().getText().toString().trim();
+                lName = lastNameChef.getEditText().getText().toString().trim();
                 emailId = emailChef.getEditText().getText().toString().trim();
                 mobile = phoneChef.getEditText().getText().toString().trim();
                 password = passwordChef.getEditText().getText().toString().trim();
@@ -103,11 +122,75 @@ public class ChefSignUpActivity extends AppCompatActivity {
                 area = areaChef.getEditText().getText().toString().trim();
                 house = houseNoChef.getEditText().getText().toString().trim();
                 pinCode = pinCodeChef.getEditText().getText().toString().trim();
+
+                if (isValid()) {
+                    progressDialog.setCancelable(false);
+                    progressDialog.setCanceledOnTouchOutside(false);
+                    progressDialog.setMessage("Registering user. Please wait.");
+                    progressDialog.show();
+
+                    firebaseAuth.createUserWithEmailAndPassword(emailId, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            databaseReference = FirebaseDatabase.getInstance().getReference("User").child(uid);
+                            final HashMap map1 = new HashMap<String, String>();
+                            map1.put("Role", role);
+
+                            databaseReference.setValue(map1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    HashMap<String, String> map2 = new HashMap<String, String>();
+                                    map2.put("First Name", fName);
+                                    map2.put("Last Name", lName);
+                                    map2.put("Email", emailId);
+                                    map2.put("Phone Number", mobile);
+                                    map2.put("House Number", house);
+                                    map2.put("Area", area);
+                                    map2.put("City", city);
+                                    map2.put("State", state);
+                                    map2.put("Pin Code", pinCode);
+
+                                    firebaseDatabase.getInstance().getReference("Chef")
+                                            .child(FirebaseAuth.getInstance().getUid())
+                                            .setValue(map2).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            progressDialog.dismiss();
+                                            firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        ReusableCodeForAll.showAlert(ChefSignUpActivity.this, "Registration successful", "You have successfully registered. Please verify your email address.");
+                                                    } else {
+                                                        progressDialog.dismiss();
+                                                        ReusableCodeForAll.showAlert(ChefSignUpActivity.this, task.getException().toString(), task.getException().getMessage());
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
             }
         });
     }
 
-    public boolean isValid(){
+    public boolean isValid() {
+        boolean areCredentialsValid = false;
+        boolean isValidHouseNo = false;
+        boolean isValidLName = false;
+        boolean isValidName = false;
+        boolean isValidEmail = false;
+        boolean isValidPassword = false;
+        boolean isValidConfPassword = false;
+        boolean isValidMobileNum = false;
+        boolean isValidArea = false;
+        boolean isValidPinCode = false;
+
         emailChef.setErrorEnabled(false);
         emailChef.setError("");
         firstNameChef.setErrorEnabled(false);
@@ -127,84 +210,82 @@ public class ChefSignUpActivity extends AppCompatActivity {
         pinCodeChef.setErrorEnabled(false);
         pinCodeChef.setError("");
 
-        boolean isValid=false, isValidHouseNo=false, isValidLName=false, isValidName=false, isValidEmail=false, isValidPassword=false, isValidConfPassword=false, isValidMobileNum=false, isValidArea=false, isValidPinCode=false;
-        if(TextUtils.isEmpty(fname)){
+        if (TextUtils.isEmpty(fName)) {
             firstNameChef.setErrorEnabled(true);
             firstNameChef.setError("Enter First Name");
-        } else{
+        } else {
             isValidName = true;
         }
-        if(TextUtils.isEmpty(lname)){
+        if (TextUtils.isEmpty(lName)) {
             lastNameChef.setErrorEnabled(true);
             lastNameChef.setError("Enter Last Name");
-        } else{
+        } else {
             isValidLName = true;
         }
-        if(TextUtils.isEmpty(emailId)){
+        if (TextUtils.isEmpty(emailId)) {
             emailChef.setErrorEnabled(true);
             emailChef.setError("Email Is Required");
-        } else{
-            if(emailId.matches(emailPattern)){
+        } else {
+            if (emailId.matches(emailPattern)) {
                 isValidEmail = true;
-            } else{
+            } else {
                 emailChef.setErrorEnabled(true);
                 emailChef.setError("Enter a Valid Email Id");
             }
         }
-        if(TextUtils.isEmpty(password)){
-            Pass.setErrorEnabled(true);
-            Pass.setError("Enter Password");
-        }else{
-            if(password.length()<8){
-                Pass.setErrorEnabled(true);
-                Pass.setError("Password is Weak");
-            }else{
-                isValidpassword = true;
+        if (TextUtils.isEmpty(password)) {
+            passwordChef.setErrorEnabled(true);
+            passwordChef.setError("Enter Password");
+        } else {
+            if (password.length() < 8) {
+                passwordChef.setErrorEnabled(true);
+                passwordChef.setError("Password length cannot be less than 8");
+            } else {
+                isValidPassword = true;
             }
         }
-        if(TextUtils.isEmpty(confpassword)){
-            cpass.setErrorEnabled(true);
-            cpass.setError("Enter Password Again");
-        }else{
-            if(!password.equals(confpassword)){
-                cpass.setErrorEnabled(true);
-                cpass.setError("Password Dosen't Match");
-            }else{
-                isValidconfpassword = true;
+        if (TextUtils.isEmpty(confPassword)) {
+            confirmPassChef.setErrorEnabled(true);
+            confirmPassChef.setError("Enter Password Again");
+        } else {
+            if (!password.equals(confPassword)) {
+                confirmPassChef.setErrorEnabled(true);
+                confirmPassChef.setError("Passwords don't match");
+            } else {
+                isValidConfPassword = true;
             }
         }
-        if(TextUtils.isEmpty(mobile)){
-            mobileno.setErrorEnabled(true);
-            mobileno.setError("Mobile Number Is Required");
-        }else{
-            if(mobile.length()<10){
-                mobileno.setErrorEnabled(true);
-                mobileno.setError("Invalid Mobile Number");
-            }else{
-                isValidmobilenum = true;
+        if (TextUtils.isEmpty(mobile)) {
+            phoneChef.setErrorEnabled(true);
+            phoneChef.setError("Mobile Number is Required");
+        } else {
+            if (mobile.length() < 10) {
+                phoneChef.setErrorEnabled(true);
+                phoneChef.setError("Invalid Mobile Number");
+            } else {
+                isValidMobileNum = true;
             }
         }
-        if(TextUtils.isEmpty(Area)){
-            area.setErrorEnabled(true);
-            area.setError("Area Is Required");
-        }else{
-            isValidarea = true;
+        if (TextUtils.isEmpty(area)) {
+            areaChef.setErrorEnabled(true);
+            areaChef.setError("Area Is Required");
+        } else {
+            isValidArea = true;
         }
-        if(TextUtils.isEmpty(Pincode)){
-            pincode.setErrorEnabled(true);
-            pincode.setError("Please Enter Pincode");
-        }else{
-            isValidpincode = true;
+        if (TextUtils.isEmpty(pinCode)) {
+            pinCodeChef.setErrorEnabled(true);
+            pinCodeChef.setError("Please enter PinCode");
+        } else {
+            isValidPinCode = true;
         }
-        if(TextUtils.isEmpty(house)){
-            houseno.setErrorEnabled(true);
-            houseno.setError("Fields Can't Be Empty");
-        }else{
-            isValidhouseno = true;
+        if (TextUtils.isEmpty(house)) {
+            houseNoChef.setErrorEnabled(true);
+            houseNoChef.setError("Fields can't Be empty");
+        } else {
+            isValidHouseNo = true;
         }
 
-        isValid = (isValidarea && isValidconfpassword && isValidpassword && isValidpincode && isValidemail && isValidmobilenum && isValidname && isValidhouseno && isValidlname) ? true : false;
-        return isValid;
-
+        areCredentialsValid = (isValidArea && isValidConfPassword && isValidPassword && isValidPinCode && isValidEmail && isValidMobileNum && isValidName && isValidHouseNo && isValidLName) ? true : false;
+        return areCredentialsValid;
     }
 }
