@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img2"
+    tools:context=".CustPhoneLoginActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCustPhoneLogin"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_shape"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Verify Phone Number"
+            android:textColor="#090909"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/countryCodePickerCustPhoneLogin"
+                android:layout_width="120dp"
+                android:layout_height="match_parent" />
+
+            <EditText
+                android:id="@+id/phoneCustPhoneLogin"
+                android:layout_width="132dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:inputType="number"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/otpCustPhoneLogin"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_shape"
+            android:text="Send OTP"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="Don't Have An Account? SignUp"
+            android:textAlignment="center"
+            android:textColor="@color/Black"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TableRow
+                android:layout_width="107dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/Black" />
+
+            <TextView
+                android:layout_width="44dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="6dp"
+                android:text="OR"
+                android:textAlignment="center"
+                android:textColor="@color/Black"
+                android:textSize="16sp" />
+
+            <TableRow
+                android:layout_width="107dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/Black" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="SignIn With"
+            android:textAlignment="center"
+            android:textColor="@color/Black"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/loginButtonCustPhoneLogin"
+            android:layout_width="105dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/btnred"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:padding="10dp"
+            android:text="Email"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+    
+</androidx.constraintlayout.widget.ConstraintLayout>
