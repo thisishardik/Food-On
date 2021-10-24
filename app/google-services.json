@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "881617744109",
+    "firebase_url": "https://foodon-76aba-default-rtdb.firebaseio.com",
     "project_id": "foodon-76aba",
     "storage_bucket": "foodon-76aba.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "881617744109-8aa5fpblfa92qndgld8mhrf5tdkhv1kg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foodon",
+            "certificate_hash": "10bda0c0831efc79a949d5a6cb1b4010596b19d7"
+          }
+        },
         {
           "client_id": "881617744109-p262eeei1gntev5tnanh9uvqlkr3shm4.apps.googleusercontent.com",
           "client_type": 3

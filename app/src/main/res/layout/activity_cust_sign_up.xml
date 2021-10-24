@@ -129,7 +129,7 @@
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/houseNoCust"
+                android:id="@+id/localAddressCust"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:errorEnabled="true"
@@ -138,8 +138,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="House No."
-                    android:inputType="number"
+                    android:hint="Local Address"
+                    android:inputType="textMultiLine|number"
                     tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -180,11 +180,27 @@
                 android:textSize="17sp" />
 
             <Spinner
-                android:id="@+id/stateCust"
+                android:id="@+id/stateSpinnerCust"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="10dp"
                 android:entries="@array/State" />
+
+            <TextView
+                android:id="@+id/txt4CityCust"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="City"
+                android:textSize="17sp" />
+
+            <Spinner
+                android:id="@+id/citySpinnerCust"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_height="48dp"
+                />
 
             <Button
                 android:id="@+id/signUpButtonCust"
@@ -245,7 +261,7 @@
                 android:padding="15dp">
 
                 <Button
-                    android:id="@+id/signInButton2Cust"
+                    android:id="@+id/signInButtonEmailCust"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -255,7 +271,7 @@
                     android:textColor="#FFFFFF" />
 
                 <Button
-                    android:id="@+id/signInButton3Cust"
+                    android:id="@+id/signInButtonPhoneCust"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"

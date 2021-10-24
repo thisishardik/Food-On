@@ -10,6 +10,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOn">
         <activity
+            android:name=".CustSendOtpActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CustForgotPassword"
+            android:exported="true" />
+        <activity
+            android:name=".CustFoodPanelActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CustVerifyPhone"
+            android:exported="true" />
+        <activity
+            android:name=".ChefForgotPassword"
+            android:exported="true" />
+        <activity
+            android:name=".ChefFoodPanelActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ChefSendOtp"
+            android:exported="true" />
+        <activity
+            android:name=".OtpEditText"
+            android:exported="true" />
+        <activity
+            android:name=".ChefVerifyPhone"
+            android:exported="true" />
+        <activity
             android:name=".DeliverySignUpActivity"
             android:exported="true" />
         <activity

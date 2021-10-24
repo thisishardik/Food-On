@@ -3,7 +3,10 @@ package com.example.foodon;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -59,7 +62,6 @@ public class ChefSignUpActivity extends AppCompatActivity {
         stateSpinnerChef = (Spinner) findViewById(R.id.stateSpinnerChef);
         citySpinnerChef = (Spinner) findViewById(R.id.citySpinnerChef);
         pinCodeChef = (TextInputLayout) findViewById(R.id.pinCodeChef);
-
         signUpButtonChef = (Button) findViewById(R.id.signUpButtonChef);
         signInEmailChef = (Button) findViewById(R.id.signInButtonEmailChef);
         signInPhoneChef = (Button) findViewById(R.id.signInButtonPhoneChef);
@@ -87,6 +89,7 @@ public class ChefSignUpActivity extends AppCompatActivity {
                     citySpinnerChef.setAdapter(arrayAdapter);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 Toast.makeText(ChefSignUpActivity.this, "Nothing selected.", Toast.LENGTH_SHORT).show();
@@ -161,7 +164,21 @@ public class ChefSignUpActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
-                                                        ReusableCodeForAll.showAlert(ChefSignUpActivity.this, "Registration successful", "You have successfully registered. Please verify your email address.");
+                                                        new AlertDialog.Builder(ChefSignUpActivity.this)
+                                                                .setTitle("Registration successful")
+                                                                .setMessage("You have successfully registered. Please verify your email address.")
+                                                                .setCancelable(false)
+                                                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                                    @Override
+                                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                                        dialogInterface.dismiss();
+                                                                        String phoneNumber = cpp.getSelectedCountryCodeWithPlus() + mobile;
+                                                                        Intent intent = new Intent(ChefSignUpActivity.this, ChefVerifyPhone.class);
+                                                                        intent.putExtra("phoneNumber", phoneNumber);
+                                                                        startActivity(intent);
+                                                                        finish();
+                                                                    }
+                                                                }).show();
                                                     } else {
                                                         progressDialog.dismiss();
                                                         ReusableCodeForAll.showAlert(ChefSignUpActivity.this, task.getException().toString(), task.getException().getMessage());
@@ -175,6 +192,22 @@ public class ChefSignUpActivity extends AppCompatActivity {
                         }
                     });
                 }
+            }
+        });
+
+        signInEmailChef.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChefSignUpActivity.this,ChefLoginActivity.class));
+                finish();
+            }
+        });
+
+        signInPhoneChef.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChefSignUpActivity.this,ChefPhoneLoginActivity.class));
+                finish();
             }
         });
     }

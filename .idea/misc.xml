@@ -7,17 +7,23 @@
         <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/drawable/btngreen.xml" value="0.27447916666666666" />
         <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/drawable/btnred.xml" value="0.27447916666666666" />
         <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/drawable/button_shape.xml" value="0.27447916666666666" />
+        <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_chef_food_panel.xml" value="0.25833333333333336" />
+        <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_chef_forgot_password.xml" value="0.25833333333333336" />
         <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_chef_login.xml" value="0.2" />
         <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_chef_phone_login.xml" value="0.23550724637681159" />
-        <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_chef_sign_up.xml" value="0.264" />
+        <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_chef_send_otp.xml" value="0.25833333333333336" />
+        <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_chef_sign_up.xml" value="0.176" />
+        <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_chef_verify_phone.xml" value="0.2" />
         <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_choose_one.xml" value="0.2" />
         <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_cust_login.xml" value="0.23550724637681159" />
         <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_cust_phone_login.xml" value="0.21467391304347827" />
-        <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_cust_sign_up.xml" value="0.1" />
+        <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_cust_sign_up.xml" value="0.264" />
+        <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_cust_verify_phone.xml" value="0.25833333333333336" />
         <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_delivery_login.xml" value="0.21467391304347827" />
         <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_delivery_sign_up.xml" value="0.2563405797101449" />
         <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_main.xml" value="0.2296195652173913" />
         <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_main_menu.xml" value="0.2" />
+        <entry key="..\:/Android/Android Projects/FoodOn/app/src/main/res/layout/activity_otp_edit_text.xml" value="0.1625" />
       </map>
     </option>
   </component>
