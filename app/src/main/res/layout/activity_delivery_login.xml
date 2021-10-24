@@ -119,7 +119,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/loginWithPhoneChefLogin"
+            android:id="@+id/loginWithPhoneDeliveryLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="35dp"

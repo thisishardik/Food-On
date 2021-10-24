@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOn">
         <activity
+            android:name=".DeliverySendOtp"
+            android:exported="true" />
+        <activity
+            android:name=".DeliveryForgotPassword"
+            android:exported="true" />
+        <activity
+            android:name=".DeliveryFoodPanelActivity"
+            android:exported="true" />
+        <activity
+            android:name=".DeliveryVerifyPhone"
+            android:exported="true" />
+        <activity
             android:name=".CustSendOtpActivity"
             android:exported="true" />
         <activity

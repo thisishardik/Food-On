@@ -70,6 +70,14 @@ public class MainActivity extends AppCompatActivity {
                                     startActivity(new Intent(MainActivity.this, ChefFoodPanelActivity.class));
                                     finish();
                                 }
+                                if (role.equals("Customer")) {
+                                    startActivity(new Intent(MainActivity.this, CustFoodPanelActivity.class));
+                                    finish();
+                                }
+                                if(role.equals("Delivery")) {
+                                    startActivity(new Intent(MainActivity.this, DeliveryFoodPanelActivity.class));
+                                    finish();
+                                }
                             }
 
                             @Override
