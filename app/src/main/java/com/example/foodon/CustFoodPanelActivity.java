@@ -3,6 +3,8 @@ package com.example.foodon;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -22,8 +24,26 @@ public class CustFoodPanelActivity extends AppCompatActivity implements BottomNa
         setContentView(R.layout.activity_cust_food_panel);
         BottomNavigationView navigationView = findViewById(R.id.bottom_navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
+        String name = getIntent().getStringExtra("PAGE");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        if (name != null) {
+            if (name.equalsIgnoreCase("HomePage")) {
+                loadChefFragment(new CustomerHomeFragment());
+            } else if (name.equalsIgnoreCase("PreparingPage")) {
+                loadChefFragment(new CustomerTrackFragment());
+            } else if (name.equalsIgnoreCase("PreparedPage")) {
+                loadChefFragment(new CustomerTrackFragment());
+            } else if (name.equalsIgnoreCase("DeliverOrderPage")) {
+                loadChefFragment(new CustomerTrackFragment());
+            } else if (name.equalsIgnoreCase("ThankYouPage")) {
+                loadChefFragment(new CustomerHomeFragment());
+            }
+        } else {
+            loadChefFragment(new CustomerHomeFragment());
+        }
     }
-
+    
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = null;
