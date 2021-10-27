@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.foodon.Adapters.CustomerHomeAdapter;
-import com.example.foodon.Customer;
 import com.example.foodon.Models.UpdateDishModel;
 import com.example.foodon.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,7 +42,7 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
         getActivity().setTitle("Home");
         Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.move);
 
-        recyclerView = v.findViewById(R.id.recycler_menu);
+        recyclerView = v.findViewById(R.id.recycler_menu_customer);
         recyclerView.setHasFixedSize(true);
         recyclerView.startAnimation(animation);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

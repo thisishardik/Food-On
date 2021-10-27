@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOn">
         <activity
+            android:name=".ChefFoodPanel.ChefUpdateDeleteDishActivity"
+            android:exported="true" />
+        <activity
             android:name=".ChefFoodPanel.ChefPostDishActivity"
             android:exported="true" />
         <activity
@@ -84,7 +87,7 @@
         <activity
             android:name=".MainMenu"
             android:exported="true" />
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"/>
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

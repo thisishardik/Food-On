@@ -1,4 +1,4 @@
-package com.example.foodon;
+package com.example.foodon.ChefFoodPanel;
 
 public class Chef {
     private String area, city, confirmPassword, emailId, fName, house, lName, mobile, password, postCode, state;

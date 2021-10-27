@@ -144,15 +144,15 @@ public class ChefSignUpActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     HashMap<String, String> map2 = new HashMap<String, String>();
-                                    map2.put("First Name", fName);
-                                    map2.put("Last Name", lName);
-                                    map2.put("Email", emailId);
-                                    map2.put("Phone Number", mobile);
-                                    map2.put("House Number", house);
-                                    map2.put("Area", area);
-                                    map2.put("City", city);
-                                    map2.put("State", state);
-                                    map2.put("Pin Code", pinCode);
+                                    map2.put("first_name", fName);
+                                    map2.put("last_name", lName);
+                                    map2.put("email", emailId);
+                                    map2.put("phone_number", mobile);
+                                    map2.put("house_number", house);
+                                    map2.put("area", area);
+                                    map2.put("city", city);
+                                    map2.put("state", state);
+                                    map2.put("pin_code", pinCode);
 
                                     firebaseDatabase.getInstance().getReference("Chef")
                                             .child(FirebaseAuth.getInstance().getUid())

@@ -20,7 +20,6 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.foodon.Chef;
 import com.example.foodon.FoodDetails;
 import com.example.foodon.R;
 import com.google.android.gms.tasks.OnCompleteListener;
